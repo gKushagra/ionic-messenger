@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Messenger</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12">
+            <h1 *ngIf="isLogin">Login</h1>
+            <h1 *ngIf="isSignup">Create Account</h1>
+            <h1 *ngIf="isReset">Update Account</h1>
+            <h1 *ngIf="isResetRequest">Request Link</h1>
+            <h1 *ngIf="isVerify">Verification</h1>
+        </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12">
+            <form [formGroup]="form">
+                <ion-list>
+                    <ion-item *ngIf="isLogin || isSignup || isResetRequest">
+                        <ion-label>Email</ion-label>
+                        <ion-input placeholder="Enter your email" type="email" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="isLogin || isSignup">
+                        <ion-label>Password</ion-label>
+                        <ion-input placeholder="Enter your password" type="password" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="isVerify">
+                        <ion-label>Code</ion-label>
+                        <ion-input placeholder="Enter the verification code" type="text" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="isReset">
+                        <ion-label>New Password</ion-label>
+                        <ion-input placeholder="Enter your new password" type="password" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="isSignup || isReset">
+                        <ion-label>Confirm Password</ion-label>
+                        <ion-input placeholder="Re-enter your password" type="password" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-button expand="block" size="small" (click)="onSubmit()">Next</ion-button>
+                    </ion-item>
+                </ion-list>
+            </form>
+        </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center" *ngIf="isLogin || isSignup || isResetRequest">
+        <ion-col size="12">
+            <ion-list>
+                <ion-item *ngIf="isLogin">
+                    <ion-button fill="clear" (click)="forgotPassword()">Forgot Password?</ion-button>
+                </ion-item>
+                <ion-item *ngIf="isLogin">
+                    <ion-button fill="clear" (click)="createAccount()">Create Account?</ion-button>
+                </ion-item>
+                <ion-item *ngIf="isSignup">
+                    <ion-button fill="clear" (click)="login()">Login?</ion-button>
+                </ion-item>
+                <ion-item *ngIf="isResetRequest">
+                    <ion-button fill="clear" (click)="login()">Back to Login</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-col>
+    </ion-row>
+</ion-grid>
